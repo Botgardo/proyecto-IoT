@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 import threading
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from config import PIN_CORRECTO
 
