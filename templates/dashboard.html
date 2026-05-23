@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — Control de Acceso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+
+    <a class="volver" href="/">← Volver al panel</a>
+    <h1>Dashboard de accesos</h1>
+
+    <div class="metric-grid">
+        <div class="metric">
+            <div class="metric-label">Total accesos</div>
+            <div class="metric-value" id="m-total">—</div>
+            <div class="metric-sub">registros encontrados</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">Autorizados</div>
+            <div class="metric-value" id="m-ok" style="color:#00cc66;">—</div>
+            <div class="metric-sub" id="m-ok-pct">—% del total</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">Denegados</div>
+            <div class="metric-value" id="m-fail" style="color:#ff4444;">—</div>
+            <div class="metric-sub" id="m-fail-pct">—% del total</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">Último acceso</div>
+            <div class="metric-value" style="font-size:15px;" id="m-last">—</div>
+            <div class="metric-sub" id="m-last-device">—</div>
+        </div>
+    </div>
+
+    <div class="charts-row">
+        <div class="chart-block">
+            <div class="section-title">Accesos por hora del día</div>
+            <div style="position: relative; width: 100%; height: 180px;">
+                <canvas id="chartHora" role="img" aria-label="Gráfica de accesos por hora del día"></canvas>
+            </div>
+        </div>
+        <div class="chart-block">
+            <div class="section-title">Resultado de accesos</div>
+            <div class="donut-wrap">
+                <div style="position: relative; flex-shrink: 0;">
+                    <canvas id="chartDonut" role="img" aria-label="Gráfica donut de autorizados vs denegados"></canvas>
+                </div>
+                <div class="donut-legend" id="donut-legend"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Bitácora de accesos</div>
+
+    <div class="filter-row">
+        <label>Filtrar:</label>
+        <select id="f-resultado">
+            <option value="">Todos</option>
+            <option value="AUTORIZADO">Autorizados</option>
+            <option value="DENEGADO">Denegados</option>
+        </select>
+        <select id="f-device">
+            <option value="">Todos los dispositivos</option>
+        </select>
+        <input type="text" id="f-search" placeholder="Buscar dispositivo…" />
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Dispositivo</th>
+                <th>PIN ingresado</th>
+                <th>Resultado</th>
+                <th>Fecha y hora</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-body"></tbody>
+    </table>
+    <div class="empty-msg" id="tabla-empty">Sin registros para los filtros seleccionados.</div>
+
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
+</body>
+</html>

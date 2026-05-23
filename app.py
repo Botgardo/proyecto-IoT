@@ -129,6 +129,19 @@ def estado():
         "ocupado": sistema_ocupado
     })
 
+@app.route("/dashboard")
+def dashboard():
+ 
+    return render_template("dashboard.html")
+
+@app.route("/api/accesos")
+def api_accesos():
+    accesos = obtener_accesos()
+    return jsonify([
+        {"id": r[0], "device_id": r[1], "pin": r[2], "resultado": r[3], "fecha_hora": r[4]}
+        for r in accesos
+    ])
+
 
 if __name__ == "__main__":
 
