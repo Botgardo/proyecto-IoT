@@ -1,0 +1,3 @@
+DEVICE_ID = "CASA-001"
+UBICACION = "Garaje Casa 1"
+PIN_CORRECTO = "1234"

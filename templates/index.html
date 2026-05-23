@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Acceso</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="panel">
+
+        <h1>Acceso</h1>
+
+        <form method="POST">
+
+            <input 
+                type="password" 
+                id="pin"
+                name="pin"
+                class="display"
+                readonly
+            >
+
+            <div class="teclado">
+
+                <button type="button" onclick="agregar('1')">1</button>
+                <button type="button" onclick="agregar('2')">2</button>
+                <button type="button" onclick="agregar('3')">3</button>
+
+                <button type="button" onclick="agregar('4')">4</button>
+                <button type="button" onclick="agregar('5')">5</button>
+                <button type="button" onclick="agregar('6')">6</button>
+
+                <button type="button" onclick="agregar('7')">7</button>
+                <button type="button" onclick="agregar('8')">8</button>
+                <button type="button" onclick="agregar('9')">9</button>
+
+                <button type="button" class="clear" onclick="limpiar()">C</button>
+                <button type="button" onclick="agregar('0')">0</button>
+                <button type="button" class="enter" onclick="enviarPin()">OK</button>
+
+            </div>
+
+        </form>
+
+        <div class="mensaje">
+            {{ mensaje }}
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
