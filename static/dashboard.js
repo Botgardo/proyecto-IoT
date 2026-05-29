@@ -2,10 +2,32 @@ function maskPin(pin) {
     return pin ? "•".repeat(pin.length) : "—";
 }
 
+function togglePin(button, id, realPin) {
+    const span = document.getElementById(`pin-${id}`);
+
+    const hidden = span.textContent.includes("•");
+
+    if (hidden) {
+        span.textContent = realPin;
+        button.textContent = "🙈";
+    } else {
+        span.textContent = "•".repeat(realPin.length);
+        button.textContent = "👁";
+    }
+}
+
 function fmtDate(s) {
-    const d = new Date(s.replace(" ", "T"));
-    return d.toLocaleDateString("es-MX", { day: "2-digit", month: "short", year: "numeric" })
-        + " " + d.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" });
+    const d = new Date(s);
+
+    return d.toLocaleDateString("es-MX", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    }) + " " +
+    d.toLocaleTimeString("es-MX", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
 }
 
 function renderTabla(data) {
@@ -33,7 +55,16 @@ function renderTabla(data) {
         <tr>
             <td style="color:#666; font-size:12px;">${r.id}</td>
             <td><span class="device-tag">${r.device_id}</span></td>
-            <td style="font-family: monospace; letter-spacing: 2px;">${maskPin(r.pin_ingresado)}</td>
+            <td style="font-family: monospace; letter-spacing: 2px;">
+                <span id="pin-${r.id}">
+                    ${maskPin(r.pin)}
+                </span>
+
+                <button onclick="togglePin(this, ${r.id}, '${r.pin}')" class="pin-btn">
+                    👁
+                </button>
+
+            </td>
             <td>
                 <span class="badge ${r.resultado === 'AUTORIZADO' ? 'badge-ok' : 'badge-fail'}">
                     ${r.resultado === 'AUTORIZADO' ? 'Autorizado' : 'Denegado'}

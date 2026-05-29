@@ -66,13 +66,10 @@ pip install -r requirements.txt
 
 ### 4. Configurar las variables de entorno
 
-Copiar el archivo de ejemplo y agregar la URL de la base de datos:
+Crear el archivo de .env y agregar la URL de la base de datos:
 
-```bash
-cp .env.example .env
-```
 
-Editar `.env` con la URL de conexión a PostgreSQL:
+Ejemplo
 
 ```
 DATABASE_URL=postgresql://usuario:contraseña@host:5432/nombre_db

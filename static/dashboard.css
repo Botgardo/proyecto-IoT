@@ -178,3 +178,14 @@ tbody td { padding: 10px 14px; vertical-align: middle; }
     border-radius: 2px;
     flex-shrink: 0;
 }
+
+.pin-btn {
+    margin-left:8px;
+    background:none;
+    border:none;
+    color:#888;
+    cursor:pointer;
+    font-size:14px;
+    padding:0;
+
+}
